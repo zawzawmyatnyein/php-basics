@@ -10,11 +10,26 @@
 
         <p><?= htmlspecialchars($note['body']) ?></p>
 
-        <form class="mt-6" method="POST">
-            <input type="hidden" name="id" value="<?= $note['id'] ?>">
-            <button class="text-sm text-red-500">Delete</button>
-        </form>
+        <footer class="mt-6 space-x-8">
+            <button
+                type="button"
+                class="inline-flex justify-center rounded-md border border-transparent bg-red-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                onclick="document.querySelector('#delete-form').submit()"
+            >
+                Delete
+            </button>
 
+            <a href="/note/edit?id=<?= $note['id'] ?>" class="inline-flex justify-center rounded-md border border-transparent bg-gray-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Edit
+            </a>
+        </footer>
+
+
+
+        <form id="delete-form" method="POST" action="/note">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="id" value="<?= $note['id'] ?>">
+        </form>
     </div>
 </main>
 
